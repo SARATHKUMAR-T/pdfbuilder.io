@@ -79,14 +79,14 @@ export default function Signup() {
       });
       const token = (data as { token: string }).token;
       localStorage.setItem("token", token);
-      router.push("/home");
+      router.push("/files");
       setIsLoading(false);
       form.reset();
     }
   }
 
   return (
-    <section className="min-h-screen flex bg-cover  dark:sm:bg-center bg-[url('/assets/dr15.jpg')] dark:bg-[url('/dr17.jpg')]   sm:bg-cover bg-bottom flex-col w-full items-center justify-end py-4   px-8">
+    <section className="min-h-screen flex bg-cover  dark:sm:bg-center bg-[url('/assets/dr15.jpg')] dark:bg-[url('/dr17.jpg')]   sm:bg-cover bg-bottom flex-col w-full items-center justify-center py-4   px-8">
       <Button className="flex gap-x-2 mb-8 " asChild variant="secondary">
         <Link href="/">
           <ChevronLeftCircle />
@@ -118,7 +118,7 @@ export default function Signup() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      type="password"
+                      type="text"
                       placeholder="jhon@email.com"
                       {...field}
                     />
@@ -134,7 +134,7 @@ export default function Signup() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="...." {...field} />
+                    <Input type="password" placeholder="...." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -130,13 +130,13 @@ export default function Login() {
       });
       const token = (data as { token: string }).token;
       localStorage.setItem("token", token);
-      router.push("/home");
+      router.push("/files");
       setIsLoading(false);
       form.reset();
     }
   }
   return (
-    <section className="bg-[url('/assets/dr15.jpg')] dark:bg-[url('/dr17.jpg')] bg-cover bg-bottom dark:sm:bg-center min-h-screen flex flex-col w-full items-center justify-end p-4 px-8">
+    <section className="bg-[url('/assets/dr15.jpg')] dark:bg-[url('/dr17.jpg')] bg-cover bg-bottom dark:sm:bg-center min-h-screen flex flex-col w-full items-center justify-center p-4 px-8">
       <Button className="flex gap-x-2 mb-8" asChild variant="secondary">
         <Link href="/">
           <ChevronLeftCircle />

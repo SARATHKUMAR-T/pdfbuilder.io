@@ -31,23 +31,27 @@ export default function NavBar() {
       label: "About",
     },
     {
+      href: "/#features",
+      label: "Features",
+    },
+    {
       href: "/#contact",
       label: "Contact",
     },
   ];
   const routes2 = [
     {
-      href: "/dashboard",
-      label: "Dashboard",
+      href: "/files",
+      label: "Your Files",
     },
     {
-      href: "/streaker",
-      label: "Streaker",
+      href: "/pdfeditor",
+      label: "PDF Editor",
     },
   ];
 
   return (
-    <header className="fixed  h-20 items-center bg-inherit z-50 w-full sm:flex sm:justify-between  px-4 ">
+    <header className="fixed  h-16 items-center  bg-opacity-50 bg-transparent backdrop-blur-sm   z-50 w-full sm:flex sm:justify-between  px-4 ">
       <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full">
         <div className="flex items-center">
           <Sheet>
@@ -87,7 +91,9 @@ export default function NavBar() {
             }}
             className="ml-4 lg:ml-0"
           >
-            <h1 className="text-lg font-semibold">PDFBuilder.io</h1>
+            <h1 className="text-lg font-semibold text-green-500">
+              PDFBuilder.io
+            </h1>
           </Button>
         </div>
         <nav className="mx-6  items-center space-x-4 lg:space-x-6 hidden  md:flex">
