@@ -21,11 +21,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 export default function Files() {
   const [file, setFile] = useState("");
+  const [fileName, setFileName] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
-  console.log(pdfFile, "pdffile");
+  const [iseditorOpen, setIsEditorOpen] = useState(false);
 
   const showPdf = async (pdf: any) => {
-    console.log("edit triggered");
+    setIsEditorOpen(true);
+    setFileName(pdf);
     setPdfFile(`http://localhost:9000/files/${pdf}`);
   };
 
@@ -49,7 +51,7 @@ export default function Files() {
   console.log(allfiles, "allfiles");
 
   return (
-    <section className=" min-h-screen max-w-full">
+    <section className=" relative min-h-screen max-w-full">
       <NavBar />
       {isFormOpen ? (
         <div className="w-full h-full  min-h-screen backdrop-blur-md flex items-center justify-center">
@@ -94,7 +96,15 @@ export default function Files() {
           </div>
         </div>
       )}
-      <PdfComp file={pdfFile} />
+      {iseditorOpen && (
+        <div className="absolute z-[60]   inset-0 w-full h-full  min-h-screen backdrop-blur-md ">
+          <PdfComp
+            setIsEditorOpen={setIsEditorOpen}
+            fileName={fileName}
+            file={pdfFile}
+          />
+        </div>
+      )}
     </section>
   );
 }

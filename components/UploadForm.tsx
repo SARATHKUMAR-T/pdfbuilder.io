@@ -1,9 +1,12 @@
+"use client";
 import { Loader2, X } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function FileForm({
   setIsFormOpen,
@@ -18,6 +21,8 @@ export default function FileForm({
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -36,8 +41,31 @@ export default function FileForm({
           },
         }
       );
-      console.log(req);
+      if (req.data.message == "File uploaded successfully") {
+        setIsLoading(false);
+        queryClient.invalidateQueries({ queryKey: ["getfiles"] });
+
+        setIsFormOpen(false);
+        toast({
+          title: req.data.message,
+          description: "Here You Go🚀",
+          duration: 5000,
+        });
+      } else {
+        setIsLoading(false);
+        toast({
+          title: "Unbale to process the file",
+          description: "Please Try Again",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
+      setIsLoading(false);
+      toast({
+        title: "Unknow error happened",
+        description: "Please Try Again",
+        variant: "destructive",
+      });
       console.log(error);
     }
   }

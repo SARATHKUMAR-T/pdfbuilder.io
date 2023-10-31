@@ -91,6 +91,7 @@ export default function Login() {
   // );
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
+    console.log(values);
     const res = await fetch("http://localhost:9000/api/login", {
       method: "POST",
       headers: {
