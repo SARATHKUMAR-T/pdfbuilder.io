@@ -48,7 +48,7 @@ export default function Signup() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
 
-    const res = await fetch("http://localhost:9000/api/signup", {
+    const res = await fetch("https://pdf-backend-one.vercel.app/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -12,7 +12,7 @@ function FeautreRow() {
           Features we known for
         </h1>
       </div>
-      <div className="mt-8 grid min-h-screen grid-cols-1 row-auto  md:grid-cols-2 md:grid-rows-4 gap-y-20  px-20 text-black">
+      <div className="mt-8 grid min-h-screen grid-cols-1 row-auto  md:grid-cols-2 md:grid-rows-4 gap-y-20  px-20 text-black dark:text-inherit">
         <div className="flex flex-col items-center justify-center px-4  text-center  ">
           <h3 className="text-4xl font-extrabold capitalize text-green-500">
             Items Management

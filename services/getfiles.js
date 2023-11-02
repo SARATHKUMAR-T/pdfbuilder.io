@@ -3,7 +3,7 @@ import axios from "axios";
 export default async function getFiles() {
   const token = localStorage.getItem("token");
   const data = axios
-    .get("http://localhost:9000/api/get-files", {
+    .get("https://pdf-backend-one.vercel.app/api/get-files", {
       headers: {
         "x-auth-token": token,
       },

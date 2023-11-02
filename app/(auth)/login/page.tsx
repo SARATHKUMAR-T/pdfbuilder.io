@@ -91,8 +91,7 @@ export default function Login() {
   // );
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    console.log(values);
-    const res = await fetch("http://localhost:9000/api/login", {
+    const res = await fetch("https://pdf-backend-one.vercel.app/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

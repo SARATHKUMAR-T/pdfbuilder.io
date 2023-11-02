@@ -42,11 +42,7 @@ export default function NavBar() {
   const routes2 = [
     {
       href: "/files",
-      label: "Your Files",
-    },
-    {
-      href: "/pdfeditor",
-      label: "PDF Editor",
+      label: "File Editor",
     },
   ];
 
