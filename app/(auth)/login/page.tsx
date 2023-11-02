@@ -191,7 +191,7 @@ export default function Login() {
             variant="ghost"
             className="text-sm"
           >
-            <AlertCircle className="h-4 w-4 mr-2 bg-yellow-500 rounded-full" />{" "}
+            <AlertCircle className="h-4 w-4 mr-2 bg-green-500 rounded-full" />{" "}
             Are You Looking For Demo Account?
           </Button>
           {demoOpen && (
@@ -213,7 +213,7 @@ export default function Login() {
             </div>
           )}
         </div>
-        <Button className="mt-4 " variant="link">
+        <Button className="mt-4 text-inherit" variant="link">
           <Link href="/signup" className="underline">
             Don&apos;t Have An Account?
           </Link>
