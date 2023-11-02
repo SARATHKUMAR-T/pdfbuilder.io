@@ -161,12 +161,12 @@ function PdfEditor(props: PdfCompProps) {
           <h4 className="text-lg font-semibold tracking-wide capitalize text-white">
             Select pages to Edit
           </h4>
-          <p className="block text-white sm:hidden text-sm font-semibold">
+          <p className="inline-block sm:hidden text-sm font-semibold">
             {props.fileName}
           </p>
 
           <Button
-            className="flex sm:hidden p-4"
+            className="inline-flex sm:hidden p-4"
             onClick={handleDownload}
             size="sm"
           >
