@@ -42,7 +42,7 @@ async function generateSelectedPDF(
   return pdfBytes;
 }
 
-function PdfComp(props: PdfCompProps) {
+function PdfEditor(props: PdfCompProps) {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [asideOpen, setAsideOpen] = useState(true);
@@ -110,22 +110,28 @@ function PdfComp(props: PdfCompProps) {
         asideOpen ? "grid-cols-[19rem,auto]" : "grid-cols-1"
       } relative bg-slate-800 max-h-screen grid grid-rows-[58px,auto] overflow-hidden`}
     >
-      <nav className="bg-gray-800 px-6 text-white drop-shadow-2xl items-center flex justify-between  shadow-xl col-span-2">
+      <nav className="bg-gray-800 px-6 text-white drop-shadow-2xl items-center flex  justify-between  shadow-xl col-span-2">
         <div className="pl-2 flex items-center gap-3">
           <button onClick={() => setAsideOpen(!asideOpen)}>
             <Menu />
           </button>
-          <p className="text-sm font-semibold">{props.fileName}</p>
+          <p className="hidden sm:block text-sm font-semibold">
+            {props.fileName}
+          </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button disabled={pageNumber <= 1} onClick={previousPage}>
+          <Button
+            className="p-1 sm:p-4"
+            disabled={pageNumber <= 1}
+            onClick={previousPage}
+          >
             <ChevronLeftCircleIcon className="h-8 w-8 text-black" />
           </Button>
           <p className="text-sm font-semibold">
             Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
           </p>
           <Button
-            className="p-4"
+            className="p-1 sm:p-4"
             disabled={pageNumber >= (numPages ?? 1)}
             onClick={nextPage}
           >
@@ -134,8 +140,12 @@ function PdfComp(props: PdfCompProps) {
         </div>
         <div className="flex items-center gap-4">
           {selectedPages.length > 0 && (
-            <Button onClick={handleDownload} size="sm">
-              Download <DownloadIcon className="pl-2" />
+            <Button
+              className="hidden sm:flex"
+              onClick={handleDownload}
+              size="sm"
+            >
+              Download <DownloadIcon className="pl-2 " />
             </Button>
           )}
           <button
@@ -148,7 +158,21 @@ function PdfComp(props: PdfCompProps) {
       </nav>
       {asideOpen && (
         <div className="bg-slate-800 max-h-[120vh] h-full overflow-y-scroll flex flex-col gap-2 items-center  p-4">
-          <h4>Select pages to Edit</h4>
+          <h4 className="text-lg font-semibold tracking-wide capitalize text-white">
+            Select pages to Edit
+          </h4>
+          <p className="block text-white sm:hidden text-sm font-semibold">
+            {props.fileName}
+          </p>
+
+          <Button
+            className="flex sm:hidden p-4"
+            onClick={handleDownload}
+            size="sm"
+          >
+            Download <DownloadIcon className="pl-2 " />
+          </Button>
+
           <div className="mt-3 ">
             {numPages && (
               <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
@@ -203,4 +227,4 @@ function PdfComp(props: PdfCompProps) {
     </div>
   );
 }
-export default PdfComp;
+export default PdfEditor;

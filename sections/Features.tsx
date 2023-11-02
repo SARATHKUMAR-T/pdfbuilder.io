@@ -8,26 +8,25 @@ function FeautreRow() {
     >
       <div className="relative mx-auto mb-14 mt-12 flex h-36  items-center  bg-slate-900 bg-cover bg-center pb-3">
         <div className="absolute ml-3 h-[90%] w-[98%]  border-2 border-dashed border-green-500"></div>
-        <h1 className=" w-full text-center text-6xl    font-extrabold uppercase tracking-widest">
+        <h1 className=" w-full text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl    font-extrabold uppercase tracking-widest">
           Features we known for
         </h1>
       </div>
-      <div className="mt-8 grid min-h-screen grid-cols-1 row-auto  md:grid-cols-2 md:grid-rows-4 gap-y-20  px-20 text-black dark:text-inherit">
-        <div className="flex flex-col items-center justify-center px-4  text-center  ">
-          <h3 className="text-4xl font-extrabold capitalize text-green-500">
-            Items Management
+      <div className="mt-8 grid min-h-screen grid-cols-1 row-auto  md:grid-cols-2 md:grid-rows-4 gap-y-20  px-4 md:px-20 text-black dark:text-inherit">
+        <div className="flex w-full flex-col items-center justify-center   text-center  ">
+          <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
+            Cloud Storage
           </h3>
-          <h4 className="text-2xl font-extrabold capitalize text-green-500">
-            Simplify Inventory Control
+          <h4 className="text-lg sm:text-2xl text-start font-extrabold capitalize text-green-500">
+            Safely Store Your PDFs
           </h4>
-          <p className="text-md mx-auto mt-4 max-w-md font-medium leading-6">
-            Effortlessly manage your inventory with our intuitive Items
-            Management feature. Input items with quantities and prices, and stay
-            updated in real-time. Make adjustments, delete obsolete items, and
-            ensure accurate records. Gain data-driven insights, enhance
-            accuracy, and secure your inventory with user permissions.
-            Seamlessly integrated for a streamlined experience. Upgrade your
-            inventory management today for optimized efficiency.
+          <p className="text-sm text-start sm:text-lg mx-auto mt-4 max-w-md font-medium leading-6">
+            Effortlessly upload your PDF files and enjoy real-time access from
+            anywhere. Smartly organize your PDFs into folders and categories for
+            quick retrieval. Your documents are safeguarded with advanced
+            security measures, and collaborative sharing is a breeze. Experience
+            the future of file management with our user-friendly interface.
+            Elevate your digital asset storage today!
           </p>
         </div>
         <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
@@ -35,8 +34,8 @@ function FeautreRow() {
             height={96}
             width={96}
             className="  mx-auto my-auto h-[80%] w-[80%]"
-            src="/assets/Dark-analytics.svg"
-            alt="inventory"
+            src="/assets/Computing.svg"
+            alt="store"
           />
         </div>
         <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
@@ -44,46 +43,42 @@ function FeautreRow() {
             height={96}
             width={96}
             className="  mx-auto my-auto h-[80%] w-[80%]"
-            src="/assets/Dark-analytics.svg"
+            src="/assets/File-Bundle.svg"
             alt="inventory"
           />
         </div>
         <div className=" flex flex-col items-center justify-center px-4 text-center   ">
-          <h3 className="text-4xl font-extrabold capitalize text-green-500">
-            Sales Tracking Made Easy
+          <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
+            PDF Viewer
           </h3>
-          <h4 className="text-2xl font-extrabold capitalize text-green-500">
-            Optimize Your Selling Process
+          <h4 className="text-lg sm:text-2xl font-extrabold capitalize text-green-500">
+            Effortless PDF Document Viewing
           </h4>
-          <p className="text-md mx-auto mt-4 max-w-md font-medium leading-6">
-            Elevate your sales management with our user-friendly Sales Tracking
-            feature. Effortlessly list items, selling prices, and quantities for
-            each transaction. Stay agile with real-time updates and easy
-            modifications. Tailor your sales records to perfection by adjusting
-            details and quantities. This feature empowers you to make informed
-            decisions, refine strategies, and boost profitability. Seamlessly
-            integrated within our system, it ensures your sales management is
-            efficient and effective. Upgrade now to revolutionize your sales
-            approach and drive success.
+          <p className="text-sm sm:text-lg text-start mx-auto mt-4 max-w-md font-medium leading-6">
+            Navigate through your PDF files effortlessly. Move through pages,
+            chapters, and sections with a user-friendly interface.Enjoy a
+            responsive design that adapts to various screen sizes, ensuring a
+            seamless viewing experience on desktop, tablet, or mobile.Our PDF
+            Viewer supports various PDF formats, ensuring compatibility with
+            your documents.Experience a feature-rich PDF Viewer that enhances
+            your reading and research.
           </p>
         </div>
         <div className="  flex flex-col items-center justify-center px-4 text-center  ">
-          <h3 className="text-4xl font-extrabold capitalize text-green-500">
-            Simplify Purchases
+          <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
+            Interactive File Manager
           </h3>
-          <h4 className="text-2xl font-extrabold capitalize text-green-500">
-            with Our Purchase Management Feature
+          <h4 className="text-lg sm:text-2xl font-extrabold capitalize text-green-500">
+            Efficient PDF File Management
           </h4>
-          <p className="text-md mx-auto mt-4 max-w-md font-medium leading-6">
-            Revolutionize your procurement process using our Purchase Management
-            feature. Seamlessly list purchase details including quantity, buying
-            price, and manufacturing company information. Stay in control with
-            the ability to modify these details anytime. Real-time updates keep
-            you informed, enabling strategic decision-making for optimal
-            procurement. Tailor your records with ease, ensuring accuracy and
-            efficiency. This integrated solution harmonizes your purchasing
-            tasks, fostering smoother operations. Upgrade now to enhance your
-            procurement efficiency and drive greater value.
+          <p className="text-sm sm:text-lg text-start mx-auto mt-4 max-w-md font-medium leading-6">
+            Our intuitive interface simplifies PDF file management. Effortlessly
+            upload, organize, and edit your files.Keep your digital space
+            clutter-free by deleting obsolete or unnecessary PDFs.Manage your
+            PDFs with precision and ease. Our Interactive File Manager empowers
+            you to edit, delete, and organize your documents efficiently.
+            Simplify your digital workspace and enhance your file management
+            capabilities.
           </p>
         </div>
         <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
@@ -101,28 +96,25 @@ function FeautreRow() {
             height={96}
             width={96}
             className="  mx-auto my-auto h-[80%] w-[80%]"
-            src="/assets/Dark-analytics.svg"
+            src="/assets/Software-Developer.svg"
             alt="inventory"
           />
         </div>
         <div className="  flex flex-col items-center justify-center px-4 text-center  ">
-          <h3 className="text-4xl font-extrabold capitalize text-green-500">
-            Customer Management Redefined
+          <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
+            Best-in-Class PDF Editor
           </h3>
-          <h4 className="text-2xl font-extrabold capitalize text-green-500">
-            Strengthen Connections Effortlessly
+          <h4 className="text-lg sm:text-2xl font-extrabold capitalize text-green-500">
+            Tailor Your PDFs with Precision
           </h4>
-          <p className="text-md mx-auto mt-4 max-w-md font-medium leading-6">
-            Elevate customer relationships through our Customer Management
-            feature. Seamlessly list and organize customer details, including
-            contact numbers and addresses, enabling easy and efficient
-            connections. Stay engaged with your clientele using real-time access
-            and modification capabilities. Enhance personalized interactions by
-            tailoring customer information as needed. This integrated solution
-            harmonizes customer data, streamlining communication for enhanced
-            satisfaction. Upgrade now to forge lasting connections, elevate
-            service quality, and foster loyalty through simplified customer
-            management.
+          <p className="text-sm sm:text-lg text-start mx-auto mt-4 max-w-md font-medium leading-6">
+            Experience the ultimate PDF editing tool. Our Best-in-Class PDF
+            Editor allows you to select specific pages, make changes, and create
+            new PDF documents effortlessly.Choose specific pages within your PDF
+            document for editing. No need to modify the entire file.Build new
+            PDF documents by selecting and combining pages from existing
+            files.Navigate through your PDFs efficiently with user-friendly
+            tools and options.
           </p>
         </div>
       </div>

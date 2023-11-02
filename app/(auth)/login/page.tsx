@@ -198,16 +198,16 @@ export default function Login() {
             <div className="mt-1 space-y-2 px-4  text-sm">
               <p>
                 Email :
-                <span className="underline underline-offset-2 decoration-yellow-500">
+                <span className="underline underline-offset-2 decoration-green-500">
                   {" "}
-                  jhon@gmail.com
+                  demo@email.com
                 </span>
               </p>
               <p>
                 Password :
-                <span className="underline underline-offset-2 decoration-yellow-500">
+                <span className="underline underline-offset-2 decoration-green-500">
                   {" "}
-                  demo123
+                  demo@1
                 </span>
               </p>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/NavBar";
@@ -10,11 +10,11 @@ import { UploadButton } from "@uploadthing/react";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import getFiles from "@/services/getfiles";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import PdfComp from "@/components/PdfReader";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Loader from "@/components/Loader";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
+import PdfEditor from "@/components/PdfReader";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -30,6 +30,7 @@ export default function Files() {
   const [pdfFile, setPdfFile] = useState<string>("");
   const [iseditorOpen, setIsEditorOpen] = useState(false);
   const [isUploading, setIsUpLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [message, setMessage] = useState("");
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -103,6 +104,7 @@ export default function Files() {
   // delete handler
   async function deleteHandler(item: any) {
     try {
+      setIsDeleting(true);
       const res = await axios.delete(
         `https://pdf-backend-one.vercel.app/api/delete-file/${item._id}`,
         {
@@ -115,14 +117,14 @@ export default function Files() {
 
       if (res.data.message == "File Deleted Successfully!") {
         queryClient.invalidateQueries({ queryKey: ["getfiles"] });
-        setIsUpLoading(false);
+        setIsDeleting(false);
         toast({
           title: res.data.message,
           description: "Here You Go🚀",
           duration: 5000,
         });
       } else {
-        setIsUpLoading(false);
+        setIsDeleting(false);
         toast({
           title: "Unbale to delete the file",
           description: "Please Try Again",
@@ -130,7 +132,7 @@ export default function Files() {
         });
       }
     } catch (error) {
-      setIsUpLoading(false);
+      setIsDeleting(false);
       toast({
         title: "Unknow error happened",
         description: "Please Try Again",
@@ -189,7 +191,7 @@ export default function Files() {
         <div className="max-w-6xl px-6 pb-6 flex justify-center flex-wrap h-auto gap-6 w-full mx-auto">
           {!isLoading &&
             allfiles?.map((item: any, i: any) => (
-              <Card className=" w-[16rem] " key={i}>
+              <Card className=" w-[16rem] " key={item._id}>
                 <CardHeader className="text-center">{item.file}</CardHeader>
                 <CardContent className="flex justify-center w-full gap-3">
                   <Button onClick={() => showPdf(item)} className="w-full">
@@ -198,9 +200,17 @@ export default function Files() {
                   <Button
                     onClick={() => deleteHandler(item)}
                     className="w-full"
+                    disabled={isDeleting}
                     variant="destructive"
                   >
-                    Delete
+                    {isDeleting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                        <span>Deleting...</span>
+                      </>
+                    ) : (
+                      <span>Delete</span>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -210,7 +220,7 @@ export default function Files() {
 
       {iseditorOpen && (
         <div className="absolute z-[60]   inset-0 w-full h-full  min-h-screen backdrop-blur-md ">
-          <PdfComp
+          <PdfEditor
             setIsEditorOpen={setIsEditorOpen}
             fileName={fileName}
             file={pdfFile}
