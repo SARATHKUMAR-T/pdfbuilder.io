@@ -46,8 +46,6 @@ export default function Files() {
     checkToken();
   }, [router]);
 
-  const token = localStorage.getItem("token");
-
   // Pdf editor Trigger
   const showPdf = async (pdf: any) => {
     setIsEditorOpen(true);
@@ -71,7 +69,7 @@ export default function Files() {
         {
           headers: {
             "Content-Type": "application/json",
-            "x-auth-token": token,
+            "x-auth-token": localStorage.getItem("token"),
           },
         }
       );
@@ -110,7 +108,7 @@ export default function Files() {
         {
           headers: {
             "Content-Type": "application/json",
-            "x-auth-token": token,
+            "x-auth-token": localStorage.getItem("token"),
           },
         }
       );

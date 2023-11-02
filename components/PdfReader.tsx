@@ -188,7 +188,7 @@ function PdfComp(props: PdfCompProps) {
           </div>
         </div>
       )}
-      <div className="h-full w-full max-w-full  min-h-screen overflow-y-scroll bg-zinc-600 p-4 flex gap-4  items-start justify-center">
+      <div className="h-full w-full max-w-full  min-h-screen overflow-y-scroll bg-zinc-600 p-2 flex gap-4  items-center justify-center">
         <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
             height={700}
