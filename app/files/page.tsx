@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, PlusCircle } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/NavBar";
@@ -15,6 +15,7 @@ import Loader from "@/components/Loader";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import PdfEditor from "@/components/PdfReader";
+import "@uploadthing/react/styles.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -148,35 +149,41 @@ export default function Files() {
       <div className="pt-16 min-h-screen w-full">
         <div className="flex justify-end px-12 py-8">
           {!isUploading && (
-            <Card className="px-4 py-2 flex gap-3 items-center bg-green-500">
-              <PlusCircle className="h-6 w-6" />
-              <UploadButton<OurFileRouter>
-                endpoint="pdfUploader"
-                onClientUploadComplete={(
-                  res: UploadFileResponse[] | undefined
-                ) => {
-                  setMessage("Uploading Completed,Storing Data On the Cloud");
-                  if (res && res.length > 0) {
-                    const { name, url } = res[0];
-                    const details = {
-                      file: name,
-                      fileUrl: url,
-                    };
-                    serverHandler(details);
-                    setIsUpLoading(false);
-                  }
-                }}
-                onUploadError={(error: Error) => {
-                  setMessage("Unable to upload...Please Try Again Sometime...");
+            <UploadButton<OurFileRouter>
+              endpoint="pdfUploader"
+              appearance={{
+                button:
+                  "bg-green-500 ut-ready:bg-green-500 ut-uploading:cursor-not-allowed rounded-r-none  bg-none after:bg-orange-400",
+                container:
+                  "w-max flex-col rounded-md border-cyan-300 bg-slate-800",
+                allowedContent:
+                  "hidden h-8 flex-col items-center justify-center px-2 text-white",
+              }}
+              className="mt-4 ut-button:bg-green-500 "
+              onClientUploadComplete={(
+                res: UploadFileResponse[] | undefined
+              ) => {
+                setMessage("Uploading Completed,Storing Data On the Cloud");
+                if (res && res.length > 0) {
+                  const { name, url } = res[0];
+                  const details = {
+                    file: name,
+                    fileUrl: url,
+                  };
+                  serverHandler(details);
                   setIsUpLoading(false);
-                  alert(`ERROR! ${error.message}`);
-                }}
-                onUploadBegin={name => {
-                  setIsUpLoading(true);
-                  setMessage("Uploading Started...It Takes Some Time");
-                }}
-              />
-            </Card>
+                }
+              }}
+              onUploadError={(error: Error) => {
+                setMessage("Unable to upload...Please Try Again Sometime...");
+                setIsUpLoading(false);
+                alert(`ERROR! ${error.message}`);
+              }}
+              onUploadBegin={name => {
+                setIsUpLoading(true);
+                setMessage("Uploading Started...It Takes Some Time");
+              }}
+            />
           )}
         </div>
 
@@ -191,9 +198,14 @@ export default function Files() {
         <div className="max-w-6xl px-6 pb-6 flex justify-center flex-wrap h-auto gap-6 w-full mx-auto">
           {!isLoading &&
             allfiles?.map((item: any, i: any) => (
-              <Card className=" w-[16rem] " key={item._id}>
-                <CardHeader className="text-center">{item.file}</CardHeader>
-                <CardContent className="flex justify-center w-full gap-3">
+              <Card
+                className="p-2 w-[16rem] h-[14rem]  bg-[url('/assets/ftuy.jpg')] bg-cover bg-center text-black bg-no-repeat "
+                key={item._id}
+              >
+                <CardHeader className="font-semibold text-clip  text-center">
+                  {item.file}
+                </CardHeader>
+                <CardContent className="flex flex-col justify-center w-full gap-3">
                   <Button onClick={() => showPdf(item)} className="w-full">
                     Edit
                   </Button>
@@ -201,7 +213,7 @@ export default function Files() {
                     onClick={() => deleteHandler(item)}
                     className="w-full"
                     disabled={isDeleting}
-                    variant="destructive"
+                    variant="outline"
                   >
                     {isDeleting ? (
                       <>
