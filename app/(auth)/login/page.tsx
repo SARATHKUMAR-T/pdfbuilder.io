@@ -200,7 +200,7 @@ export default function Login() {
                 Email :
                 <span className="underline underline-offset-2 decoration-green-500">
                   {" "}
-                  demo@email.com
+                  demo1@email.com
                 </span>
               </p>
               <p>
