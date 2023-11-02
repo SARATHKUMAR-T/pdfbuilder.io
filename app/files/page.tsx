@@ -44,7 +44,7 @@ export default function Files() {
       }
     }
     checkToken();
-  }, []);
+  }, [router]);
 
   const token = localStorage.getItem("token");
 
