@@ -19,6 +19,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// Form schema for Signup
 const formSchema = z.object({
   username: z.string().min(4, {
     message: "Username must be at least 4 characters.",
@@ -36,6 +37,7 @@ export default function Signup() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
+  // Initialzing the react hook form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,9 +47,9 @@ export default function Signup() {
     },
   });
 
+  // form submission handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-
     const res = await fetch("https://pdf-backend-one.vercel.app/api/signup", {
       method: "POST",
       headers: {
@@ -56,6 +58,7 @@ export default function Signup() {
       body: JSON.stringify(values),
     });
     const data = await res.json();
+    // checking for already exsisting user
     if (data.message === "User Already Exists!") {
       toast({
         title: "User Already Exists!",
@@ -74,6 +77,7 @@ export default function Signup() {
         variant: "destructive",
       });
     } else {
+      // successfull signup and redirected to files page
       toast({
         title: "New User Created Successfully!",
       });

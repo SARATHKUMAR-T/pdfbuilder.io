@@ -1,7 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/NavBar";
@@ -9,14 +7,16 @@ import { pdfjs } from "react-pdf";
 import { UploadButton } from "@uploadthing/react";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import getFiles from "@/services/getfiles";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Loader from "@/components/Loader";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import PdfEditor from "@/components/PdfReader";
 import "@uploadthing/react/styles.css";
+import FileCard from "@/components/FileCard";
+import { SkeletonCard } from "@/components/SkeletonCard";
 
+// react pdf initializer
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url
@@ -26,17 +26,17 @@ interface UploadFileResponse {
   name: string;
   url: string;
 }
+
 export default function Files() {
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState<string>("");
   const [pdfFile, setPdfFile] = useState<string>("");
   const [iseditorOpen, setIsEditorOpen] = useState(false);
   const [isUploading, setIsUpLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
   const queryClient = useQueryClient();
   const router = useRouter();
   const { toast } = useToast();
-  // console.log(message);
 
   // Route Protection
   useEffect(() => {
@@ -78,11 +78,11 @@ export default function Files() {
       if (req.data.message == "File uploaded successfully") {
         queryClient.invalidateQueries({ queryKey: ["getfiles"] });
         setIsUpLoading(false);
-        toast({
-          title: req.data.message,
-          description: "Here You Go🚀",
-          duration: 5000,
-        });
+        // toast({
+        //   title: req.data.message,
+        //   description: "Here You Go🚀",
+        //   duration: 5000,
+        // });
       } else {
         setIsUpLoading(false);
         toast({
@@ -148,7 +148,10 @@ export default function Files() {
       <NavBar />
       <div className="pt-16 min-h-screen w-full">
         <div className="flex justify-end px-12 py-8">
-          {!isUploading && (
+          {/* uploading the document to DB */}
+          {isUploading ? (
+            <Loader message={message} />
+          ) : (
             <UploadButton<OurFileRouter>
               endpoint="pdfUploader"
               appearance={{
@@ -171,7 +174,6 @@ export default function Files() {
                     fileUrl: url,
                   };
                   serverHandler(details);
-                  setIsUpLoading(false);
                 }
               }}
               onUploadError={(error: Error) => {
@@ -187,49 +189,29 @@ export default function Files() {
           )}
         </div>
 
-        {allfiles?.length === 0 && (
-          <Alert className="max-w-md mx-auto text-center">
-            <AlertTitle className="mb-4">Your Folder Is Empty</AlertTitle>
-            <AlertDescription className="text-sm">
-              Please Upload File To Edit
-            </AlertDescription>
-          </Alert>
-        )}
         <div className="max-w-6xl px-6 pb-6 flex justify-center flex-wrap h-auto gap-6 w-full mx-auto">
-          {!isLoading &&
-            allfiles?.map((item: any, i: any) => (
-              <Card
-                className="p-2 w-[16rem] h-[14rem]  bg-[url('/assets/ftuy.jpg')] bg-cover bg-center text-black bg-no-repeat "
+          {isLoading && <SkeletonCard />}
+          {/* rendering lists of files with the use of map */}
+          {allfiles?.length === 0 ? (
+            <Alert className="max-w-md mx-auto text-center">
+              <AlertTitle className="mb-4">Your Folder Is Empty</AlertTitle>
+              <AlertDescription className="text-sm">
+                Please Upload File To Edit
+              </AlertDescription>
+            </Alert>
+          ) : (
+            allfiles?.map((item: any) => (
+              <FileCard
                 key={item._id}
-              >
-                <CardHeader className="font-semibold text-clip  text-center">
-                  {item.file}
-                </CardHeader>
-                <CardContent className="flex flex-col justify-center w-full gap-3">
-                  <Button onClick={() => showPdf(item)} className="w-full">
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => deleteHandler(item)}
-                    className="w-full"
-                    disabled={isDeleting}
-                    variant="outline"
-                  >
-                    {isDeleting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
-                        <span>Deleting...</span>
-                      </>
-                    ) : (
-                      <span>Delete</span>
-                    )}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                showPdf={showPdf}
+                deleteHandler={deleteHandler}
+                item={item}
+              />
+            ))
+          )}
         </div>
       </div>
-
+      {/* pdf editor component logic */}
       {iseditorOpen && (
         <div className="absolute z-[60]   inset-0 w-full h-full  min-h-screen backdrop-blur-md ">
           <PdfEditor
@@ -239,8 +221,6 @@ export default function Files() {
           />
         </div>
       )}
-
-      {isUploading && <Loader message={message} />}
     </section>
   );
 }

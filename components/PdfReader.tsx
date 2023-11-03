@@ -24,24 +24,23 @@ interface PdfCompProps {
   fileName: string;
 }
 
+// Compiling the new pdf
 async function generateSelectedPDF(
   inputPDFBuffer: any,
   selectedPageNumbers: any
 ) {
   const pdfDoc = await PDFDocument.load(inputPDFBuffer);
   const newPdfDoc = await PDFDocument.create();
-
   for (const pageNumber of selectedPageNumbers) {
     const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageNumber - 1]);
-    copiedPage.setRotation(degrees(0)); // Reset the page rotation if needed
+    copiedPage.setRotation(degrees(0));
     newPdfDoc.addPage(copiedPage);
   }
-
   const pdfBytes = await newPdfDoc.save();
-
   return pdfBytes;
 }
 
+// Pdf editor component
 function PdfEditor(props: PdfCompProps) {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -49,6 +48,7 @@ function PdfEditor(props: PdfCompProps) {
   const [selectedPages, setSelectedPages] = useState<number[]>([]);
   const [pdfLoader, setPdfLoader] = useState<boolean>(false);
 
+  // Pdf download handler
   async function handleDownload() {
     if (selectedPages.length > 0) {
       try {
@@ -60,7 +60,7 @@ function PdfEditor(props: PdfCompProps) {
           pdfBuffer,
           selectedPages
         );
-
+        //  compiling new pdf and downloading
         const blob = new Blob([newPdfBuffer], { type: "application/pdf" });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -77,11 +77,13 @@ function PdfEditor(props: PdfCompProps) {
     }
   }
 
+  // react pdf document loading function
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
     setPageNumber(1);
   }
 
+  // function for changing the page
   function changePage(offset: any) {
     setPageNumber(prevPageNumber => prevPageNumber + offset);
   }
@@ -94,6 +96,7 @@ function PdfEditor(props: PdfCompProps) {
     changePage(1);
   }
 
+  // function for selecting pages
   function selectionHandler(page: number) {
     if (selectedPages.includes(page)) {
       const newpages = selectedPages.filter(item => item != page);
@@ -110,6 +113,7 @@ function PdfEditor(props: PdfCompProps) {
         asideOpen ? "grid-cols-[19rem,auto]" : "grid-cols-1"
       } relative bg-slate-800 max-h-screen grid grid-rows-[58px,auto] overflow-hidden`}
     >
+      {/* main navigation */}
       <nav className="bg-gray-800 px-6 text-white drop-shadow-2xl items-center flex  justify-between  shadow-xl col-span-2">
         <div className="pl-2 flex items-center gap-3">
           <button onClick={() => setAsideOpen(!asideOpen)}>
@@ -156,6 +160,7 @@ function PdfEditor(props: PdfCompProps) {
           </button>
         </div>
       </nav>
+      {/* sidebar */}
       {asideOpen && (
         <div className="bg-slate-800 max-h-[120vh] h-full overflow-y-scroll flex flex-col gap-2 items-center  p-4">
           <h4 className="text-lg font-semibold tracking-wide capitalize text-white">
@@ -192,7 +197,7 @@ function PdfEditor(props: PdfCompProps) {
                           : ""
                       } absolute  flex-col gap-1  hover:bg-black/70 duration-300 hover:ring-4 cursor-pointer  ring-green-500 bg-black/25 inset-0 flex items-center justify-center `}
                     >
-                      <p className="text-lg font-bold">{index + 1}</p>
+                      <p className="text-lg  font-bold">{index + 1}</p>
                       <Button
                         variant={
                           selectedPages.includes(index + 1)
@@ -212,11 +217,11 @@ function PdfEditor(props: PdfCompProps) {
           </div>
         </div>
       )}
-      <div className="h-full w-full max-w-full  min-h-screen overflow-y-scroll bg-zinc-600 p-2 flex gap-4  items-center justify-center">
+      {/* main section pdf viweport */}
+      <div className="h-full w-full max-w-full max-h-[120vh] overflow-y-scroll bg-zinc-600 p-4 flex gap-4  items-start justify-center">
         <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
             height={700}
-            width={500}
             pageNumber={pageNumber}
             renderTextLayer={false}
             renderAnnotationLayer={false}

@@ -7,6 +7,7 @@ import Hero from "@/sections/Hero";
 import { useEffect } from "react";
 
 export default function Home() {
+  // clearing already exsisting tokens
   useEffect(() => {
     function clearToken() {
       localStorage.removeItem("token");

@@ -1,7 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -14,16 +13,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  AlertCircle,
-  ChevronLeftCircle,
-  IceCream,
-  Loader2,
-} from "lucide-react";
+import { AlertCircle, ChevronLeftCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// form schema for login
 const formSchema = z.object({
   email: z.string().email({
     message: "Invalid email address.",
@@ -38,6 +33,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
   const { toast } = useToast();
+
+  // initializing the react form hook
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,49 +43,7 @@ export default function Login() {
     },
   });
 
-  // const { mutate, isLoading } = useMutation(
-  //   async values => {
-  //     const response = await axios.post(
-  //       "https://zemo-backend.vercel.app/api/signin",
-  //       values
-  //     );
-  //     return response.data;
-  //   },
-  //   {
-  //     onSuccess: (data: any) => {
-  //       toast({
-  //         title: "User Signed In Successfully!",
-  //       });
-  //       const token = (data as { token: string }).token;
-  //       localStorage.setItem("token", token);
-  //       form.reset();
-  //       router.push("/dashboard");
-  //     },
-  //     onError: (error: unknown) => {
-  //       if (error instanceof AxiosError && error.response?.status === 500) {
-  //         toast({
-  //           title: "User Not Found!",
-  //           description: "Please Create An Account And Continue",
-  //         });
-  //       } else if (
-  //         error instanceof AxiosError &&
-  //         error.response?.status === 400
-  //       ) {
-  //         toast({
-  //           title: "Invalid Credentials!",
-  //           variant: "destructive",
-  //           description: "Try Again with Correct Credentials",
-  //         });
-  //       } else {
-  //         toast({
-  //           title: "Unknown Error!",
-  //           description: "Please Try Again Later",
-  //           variant: "destructive",
-  //         });
-  //       }
-  //     },
-  //   }
-  // );
+  // form submission function
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     const res = await fetch("https://pdf-backend-one.vercel.app/api/login", {
@@ -99,7 +54,22 @@ export default function Login() {
       body: JSON.stringify(values),
     });
     const data = await res.json();
+    console.log(data);
+
     if (data.message) {
+      // successfull login notification
+      if (data.token) {
+        toast({
+          title: "User Signed In Successfully!",
+          duration: 2000,
+        });
+        const token = (data as { token: string }).token;
+        localStorage.setItem("token", token);
+        router.push("/files");
+        setIsLoading(false);
+        form.reset();
+      }
+      // Failed Login call and error handling
       if (data.message === "user doesn't exist") {
         setIsLoading(false);
         toast({
@@ -114,25 +84,14 @@ export default function Login() {
           variant: "destructive",
           description: "Try Again with Correct Credentials",
         });
-      } else {
-        setIsLoading(false);
-        toast({
-          title: "Unknown Error!",
-          description: "Please Try Again Later",
-          variant: "destructive",
-        });
       }
-    }
-    if (data.token) {
-      toast({
-        title: "User Signed In Successfully!",
-        duration: 2000,
-      });
-      const token = (data as { token: string }).token;
-      localStorage.setItem("token", token);
-      router.push("/files");
+    } else {
       setIsLoading(false);
-      form.reset();
+      toast({
+        title: "Unknown Error!",
+        description: "Please Try Again Later",
+        variant: "destructive",
+      });
     }
   }
   return (
