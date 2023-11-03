@@ -38,7 +38,7 @@ export default function Hero() {
       <div className=" flex flex-col sm:flex-row sm:flex-wrap  sm:justify-center lg:justify-around  min-h-[40vh] h-full    mt-8 max-w-full w-full px-8 gap-2">
         <Card className="min-w-[14rem]  sm:w-max self-end   w-full text-center bg-green-200 dark:bg-slate-700">
           <CardHeader className="text-xl font-bold">
-            Your Pdf
+            Your Files
             <br />
             On Secured
             <br />
