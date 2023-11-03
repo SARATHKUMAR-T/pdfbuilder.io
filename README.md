@@ -5,6 +5,9 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 # visit the live website:
 [Visit PDFBuilder.io](https://pdfbuilder-io.vercel.app/)
 
+# Backend Link:
+[pdf_backend](https://github.com/SARATHKUMAR-T/pdf_backend)
+
 ## Table of Contents
 
 1. [Features](#features)
@@ -14,9 +17,8 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 5. [File Upload and Storage](#file-upload-and-storage)
 6. [Database Structure](#database-structure)
 7. [Editing PDFs](#editing-pdfs)
-8. [Downloads](#downloads)
-9. [Deployment](#deployment)
-10. [Backend](#backend)
+8. [Deployment](#deployment)
+9. [Backend](#backend)
 
   
 
@@ -43,8 +45,8 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 
 - Node.js and npm (Node Package Manager).
 - MongoDB installed and running.
-- Environment variables for configuration (e.g., ALLOWED_ORIGINS).
 - add .env.local file and add env variables for uploadthing.
+- you can get your Uploadthing Id and Secret Key On their websites.
 
 ### Installation<a name="installation"></a>
 
@@ -77,11 +79,6 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 - user willbe redirected to edit page.User can select pages they want to keep.
 - Navigation button is provided in the Top navigation bar.
 - After selecting the download button will appear by clicking the download button file will download automatically.
-
-## Downloads<a name="downloads"></a>
-
-- By clicking the Download Button the file willbe downloaded .
-
 
 
 ## Deployment<a name="deployment"></a>
