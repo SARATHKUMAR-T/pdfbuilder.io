@@ -218,7 +218,7 @@ function PdfEditor(props: PdfCompProps) {
         </div>
       )}
       {/* main section pdf viweport */}
-      <div className="h-full w-full max-w-full max-h-[120vh] overflow-y-scroll bg-zinc-600 p-4 flex gap-4  items-start justify-center">
+      <div className="h-full w-full max-w-full min-h-screen max-h-[120vh] overflow-y-scroll bg-zinc-600 p-4 flex gap-4  items-start justify-center">
         <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
             height={700}

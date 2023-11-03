@@ -54,7 +54,6 @@ export default function Login() {
       body: JSON.stringify(values),
     });
     const data = await res.json();
-    console.log(data);
 
     if (data.message) {
       // successfull login notification
