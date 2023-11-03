@@ -1,6 +1,6 @@
 # PDF Editing Web Application
 
-Welcome to the PDF Editing Web Application documentation. This web application allows users to store, edit, and access PDF files from anywhere, anytime.
+Welcome to the PDFBuilder.io Application documentation. This web application allows users to store, edit, and access PDF files from anywhere, anytime.
 
 # visit the live website:
 [Visit PDFBuilder.io](https://pdfbuilder-io.vercel.app/)
@@ -63,7 +63,7 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 ## File Upload and Storage<a name="file-upload-and-storage"></a>
 
 - PDF files are uploaded and securely stored in the cloud.
-- Files are Stored using ##uploadthing.
+- Files are Stored using uploadthing.
 
 ## Database Structure<a name="database-structure"></a>
 
