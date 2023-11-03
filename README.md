@@ -16,7 +16,8 @@ Welcome to the PDF Editing Web Application documentation. This web application a
 7. [Editing PDFs](#editing-pdfs)
 8. [Downloads](#downloads)
 9. [Deployment](#deployment)
-10. [Backend] (#backend)
+10. [Backend](#backend)
+
   
 
 
