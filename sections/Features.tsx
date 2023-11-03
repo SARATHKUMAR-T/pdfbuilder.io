@@ -12,8 +12,8 @@ function FeautreRow() {
           Features we known for
         </h1>
       </div>
-      <div className="mt-8 grid min-h-screen grid-cols-1 row-auto  md:grid-cols-2 md:grid-rows-4 gap-y-20  px-4 md:px-20 text-black dark:text-inherit">
-        <div className="flex w-full flex-col items-center justify-center   text-center  ">
+      <div className="mt-8 grid min-h-screen grid-cols-1 grid-rows-8  md:grid-cols-2 md:grid-rows-4 gap-y-10 sm:gap-y-20  px-4 md:px-20 text-black dark:text-inherit">
+        <div className="order-1 flex w-full flex-col items-center justify-center   text-center  ">
           <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
             Cloud Storage
           </h3>
@@ -29,16 +29,16 @@ function FeautreRow() {
             Elevate your digital asset storage today!
           </p>
         </div>
-        <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
+        <div className="order-2 flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
           <Image
             height={96}
             width={96}
-            className="  mx-auto my-auto h-[80%] w-[80%]"
+            className=" mx-auto my-auto h-[80%] w-[80%]"
             src="/assets/Computing.svg"
             alt="store"
           />
         </div>
-        <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
+        <div className="order-4 md:order-3 flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
           <Image
             height={96}
             width={96}
@@ -47,7 +47,7 @@ function FeautreRow() {
             alt="inventory"
           />
         </div>
-        <div className=" flex flex-col items-center justify-center px-4 text-center   ">
+        <div className="order-3 md:order-4 flex flex-col items-center justify-center px-4 text-center   ">
           <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
             PDF Viewer
           </h3>
@@ -64,7 +64,7 @@ function FeautreRow() {
             your reading and research.
           </p>
         </div>
-        <div className="  flex flex-col items-center justify-center px-4 text-center  ">
+        <div className="order-5  flex flex-col items-center justify-center px-4 text-center  ">
           <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
             Interactive File Manager
           </h3>
@@ -81,7 +81,7 @@ function FeautreRow() {
             capabilities.
           </p>
         </div>
-        <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
+        <div className="order-6 flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
           <Image
             height={96}
             width={96}
@@ -91,7 +91,7 @@ function FeautreRow() {
           />
         </div>
         {/* customer */}
-        <div className=" flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
+        <div className="order-8 md:order-7 flex items-center justify-center rounded-full border-b-2 border-l-2 border-r-2 border-t-2  border-green-500 border-b-blue-500 border-l-red-600 border-r-yellow-400 duration-300 hover:scale-105 hover:border-b-4 hover:border-t-4">
           <Image
             height={96}
             width={96}
@@ -100,7 +100,7 @@ function FeautreRow() {
             alt="inventory"
           />
         </div>
-        <div className="  flex flex-col items-center justify-center px-4 text-center  ">
+        <div className="order-7 md:order-8  flex flex-col items-center justify-center px-4 text-center  ">
           <h3 className="text-3xl sm:text-4xl font-extrabold capitalize text-green-500">
             Best-in-Class PDF Editor
           </h3>
