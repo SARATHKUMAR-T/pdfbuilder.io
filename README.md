@@ -38,6 +38,7 @@ Welcome to the PDFBuilder.io Application documentation. This web application all
 - Authentication: JWT tokens.
 - File Upload: Uploadthing.
 - Database: MongoDB.
+- ![login](https://github.com/SARATHKUMAR-T/pdfbuilder.io/issues/1)
 
 ## Getting Started<a name="getting-started"></a>
 
