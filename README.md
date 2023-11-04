@@ -80,12 +80,13 @@ Welcome to the PDFBuilder.io Application documentation. This web application all
 - After successful login users can upload theri files to cloud.
   ![home page](https://i.imgur.com/CT24ijJ.png)
 - on successfull updation the file will showed in file manager page.
+  ![loader](https://i.imgur.com/mwjnxmc.png)
 - user can select file and edit by clicking the edit button.
   ![file manager](https://i.imgur.com/pAkwlZc.png)
 - user willbe redirected to edit page.User can select pages they want to keep.
 - Navigation button is provided in the Top navigation bar.
   ![editor](https://i.imgur.com/ULpnE5r.png)
-- After selecting the download button will appear by clicking the download button file will download automatically.
+- After selecting pages the download button will appear and by clicking the download button file will download automatically.
   ![download button](https://i.imgur.com/isrU4GC.png)
 
 ## Deployment<a name="deployment"></a>
