@@ -72,6 +72,7 @@ Welcome to the PDFBuilder.io Application documentation. This web application all
 
 ## Editing PDFs<a name="editing-pdfs"></a>
 
+[Imgur](https://i.imgur.com/HpdXNq1.png)
 - User can user their email credentials to create a account.
 - After successful login users can upload theri files to cloud.
 - on successfull updation the file will showed in file manager page.
