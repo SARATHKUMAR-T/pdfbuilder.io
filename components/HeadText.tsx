@@ -5,7 +5,7 @@ const TextAnimation = () => {
   const text2 = "YOUR WAY";
 
   return (
-    <div className="text-center pt-14 md:pt-28">
+    <div className="text-center pt-28 md:pt-28">
       <h1 className="font-extrabold text-5xl sm:text-7xl">
         {text1.split("").map((char, index) => (
           <motion.span
