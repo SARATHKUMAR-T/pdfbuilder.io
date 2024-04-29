@@ -29,6 +29,7 @@ const formSchema = z.object({
 });
 
 export default function Login() {
+  console.log("Sample logger");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
